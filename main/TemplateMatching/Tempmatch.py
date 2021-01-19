@@ -65,3 +65,7 @@ def template_match(sourceImg_path, templateImg_path, setThreshold=0.5, matchMeth
 
             # Close the window when any key is pressed
             cv.waitKey()
+
+
+# # Uncomment to function below to test
+# template_match("farm2.jpeg", "house2.jpeg", setThreshold=0.40, showResult=True)
