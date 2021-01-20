@@ -12,11 +12,17 @@ class EdgeFinder:
 
     # Get the contours in an image
     def detectContours(self, img):
+        # Convert the image to from HSV to grayscale
+        img = cv.cvtColor(img, cv.COLOR_HSV2BGR)
         img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-        edges = cv.Canny(img, 100, 200, L2gradient=True)
 
-        contours, hierarchy = cv.findContours(edges, cv.RETR_TREE, cv.CHAIN_APPROX_NONE)
+        # Threshold the gaussian blurred masked image using otsu binarization
+        ret, thresh_img = cv.threshold(
+            img, 0, 255, cv.THRESH_BINARY+cv.THRESH_OTSU)
+        # # Detect the edges in the image
+        # edges = cv.Canny(thresh_img, 100, 200, L2gradient=True)
 
-        cnt = contours[4]
-        res = cv.drawContours(img, [cnt], 0, (0, 255, 0), 3)
-        return res
+        # Get the contuors in the image from the preprocessed image
+        contours, hierarchy = cv.findContours(
+            thresh_img, cv.RETR_TREE, cv.CHAIN_APPROX_NONE)
+        return contours

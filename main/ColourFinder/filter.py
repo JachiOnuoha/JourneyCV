@@ -9,6 +9,8 @@ class HSVFilter:
         self.intensity = intensity
 
     def isolate(self, hsv, frame, colorType="blue"):
+        # Gaussian Blur
+        hsv = cv.GaussianBlur(hsv, (5, 5), 0)
 
         # Generate blue color mask
         if colorType == "blue":
