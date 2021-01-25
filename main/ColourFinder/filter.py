@@ -14,8 +14,8 @@ class HSVFilter:
 
         # Generate blue color mask
         if colorType == "blue":
-            lowerBlue = np.array([110, 50, 50])
-            upperBlue = np.array([130, 255, 255])
+            lowerBlue = np.array([94, 80, 2])
+            upperBlue = np.array([127, 255, 255])
             mask = cv.inRange(hsv, lowerBlue, upperBlue)
 
         # Generate red color mask

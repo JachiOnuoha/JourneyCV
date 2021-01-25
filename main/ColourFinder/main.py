@@ -20,15 +20,15 @@ while True:
     hsv = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
 
     # Get resulting mask and coordinates for desired color
-    ret, coord = myFilter.isolate(hsv=hsv, frame=frame)
+    retMask, coord = myFilter.isolate(hsv=hsv, frame=frame)
 
     # print(coord)
 
     # Apply mask to original frame
-    final = cv.bitwise_and(frame, frame, mask=ret)
+    processedImg = cv.bitwise_and(frame, frame, mask=retMask)
 
     # Get the contours in the image
-    contourArr = myFinder.detectContours(final)
+    contourArr = myFinder.detectContours(processedImg)
 
     # Outline the contours
     final = cv.drawContours(frame, contourArr, -1, (0, 255, 0), 2)
