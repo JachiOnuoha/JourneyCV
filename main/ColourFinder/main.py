@@ -30,9 +30,14 @@ while True:
     # Get the contours in the image
     contourArr = myFinder.detectContours(processedImg)
 
-    # Outline the contours
-    final = cv.drawContours(frame, contourArr, -1, (0, 255, 0), 2)
-    cv.imshow("Result", final)
+    # Get contour Areas
+    for cont in contourArr:
+        area = cv.contourArea(cont)
+        # Outline the contours
+        if area > 5500:
+            frame = cv.drawContours(frame, [cont], -1, (0, 255, 0), 2)
+
+    cv.imshow("Result", frame)
 
     if cv.waitKey(1) & 0xFF == ord('q'):
         vidCap.release()

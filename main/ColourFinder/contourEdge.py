@@ -18,11 +18,13 @@ class EdgeFinder:
 
         # Threshold the gaussian blurred masked image using otsu binarization
         ret, thresh_img = cv.threshold(
-            img, 0, 255, cv.THRESH_BINARY+cv.THRESH_OTSU)
+            img, 0, 255, cv.THRESH_BINARY)
+
         # # Detect the edges in the image
-        # edges = cv.Canny(thresh_img, 100, 200, L2gradient=True)
+        # edges = cv.Canny(img, 100, 200, L2gradient=True)
 
         # Get the contuors in the image from the preprocessed image
         contours, hierarchy = cv.findContours(
             thresh_img, cv.RETR_TREE, cv.CHAIN_APPROX_NONE)
+
         return contours
