@@ -20,12 +20,12 @@ while True:
     hsv = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
 
     # Get resulting mask and coordinates for desired color
-    retMask, coord = myFilter.isolate(hsv=hsv, frame=frame)
+    retMask = myFilter.isolate(hsv=hsv, frame=frame)
 
     # print(coord)
 
-    # Apply mask to original frame
-    processedImg = cv.bitwise_and(frame, frame, mask=retMask)
+    # Apply mask to original frame retmask[0] = blue
+    processedImg = cv.bitwise_and(frame, frame, mask=retMask[0])
 
     # Get the contours in the image
     thresh, contourArr = myFinder.detectContours(processedImg)
@@ -45,7 +45,8 @@ while True:
 
             # Draw a white dot and label the color of the object
             cv.circle(frame, (cx, cy), 3, (255, 255, 255), -1)
-            cv.putText(frame, "blue", (cx-20, cy-20), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+            cv.putText(frame, "blue", (cx-20, cy-20),
+                       cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
     cv.imshow("Result", frame)
     cv.imshow("Threshold", thresh)

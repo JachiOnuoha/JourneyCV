@@ -8,34 +8,31 @@ class HSVFilter:
     def __init__(self, intensity):
         self.intensity = intensity
 
-    def isolate(self, hsv, frame, colorType="blue"):
+    def isolate(self, hsv, frame):
         # Gaussian Blur
         # hsv = cv.GaussianBlur(hsv, (5, 5), 0)
 
         # Generate blue color mask
-        if colorType == "blue":
-            lowerBlue = np.array([100, 80, 0])
-            upperBlue = np.array([140, 255, 255])
-            mask = cv.inRange(hsv, lowerBlue, upperBlue)
+        lowerBlue = np.array([100, 80, 0])
+        upperBlue = np.array([140, 255, 255])
+        mask1 = cv.inRange(hsv, lowerBlue, upperBlue)
 
         # Generate red color mask
-        elif colorType == "red":
-            lowerRed = np.array([])
-            upperRed = np.array([])
-            mask = cv.inRange(hsv, lowerRed, upperRed)
+        lowerRed = np.array([10, 255, 255])
+        upperRed = np.array([180, 255, 255])
+        mask2 = cv.inRange(hsv, lowerRed, upperRed)
 
         # Generate green color mask
-        elif colorType == "green":
-            lowerGreen = np.array([])
-            upperGreen = np.array([])
-            mask = cv.inRange(hsv, lowerGreen, upperGreen)
+        lowerGreen = np.array([45, 100, 50])
+        upperGreen = np.array([75, 255, 255])
+        mask3 = cv.inRange(hsv, lowerGreen, upperGreen)
 
         # Generate yellow color mask
-        elif colorType == "yellow":
-            lowerYellow = np.array([])
-            upperYellow = np.array([])
-            mask = cv.inRange(hsv, lowerYellow, upperYellow)
+        lowerYellow = np.array([20, 100, 100])
+        upperYellow = np.array([30, 255, 255])
+        mask4 = cv.inRange(hsv, lowerYellow, upperYellow)
+
+        all_masks = [mask1, mask2, mask3, mask4]
 
         # Isolate where the color appears and return the coordinates
-        result = np.where(mask == self.intensity)
-        return mask, result
+        return all_masks
