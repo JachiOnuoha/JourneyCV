@@ -27,4 +27,4 @@ class EdgeFinder:
         contours, hierarchy = cv.findContours(
             thresh_img, cv.RETR_TREE, cv.CHAIN_APPROX_NONE)
 
-        return contours
+        return thresh_img, contours
