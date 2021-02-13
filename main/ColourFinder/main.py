@@ -25,7 +25,7 @@ while True:
     # print(coord)
 
     # Apply mask to original frame retmask[0] = blue
-    processedImg = cv.bitwise_and(frame, frame, mask=retMask[0])
+    processedImg = cv.bitwise_and(frame, frame, mask=retMask[2])
 
     # Get the contours in the image
     thresh, contourArr = myFinder.detectContours(processedImg)
@@ -45,7 +45,7 @@ while True:
 
             # Draw a white dot and label the color of the object
             cv.circle(frame, (cx, cy), 3, (255, 255, 255), -1)
-            cv.putText(frame, "blue", (cx-20, cy-20),
+            cv.putText(frame, "red", (cx-20, cy-20),
                        cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
     cv.imshow("Result", frame)

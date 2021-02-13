@@ -18,17 +18,17 @@ class HSVFilter:
         mask1 = cv.inRange(hsv, lowerBlue, upperBlue)
 
         # Generate red color mask
-        lowerRed = np.array([10, 255, 255])
-        upperRed = np.array([180, 255, 255])
+        lowerRed = np.array([0, 50, 120])
+        upperRed = np.array([10, 255, 255])
         mask2 = cv.inRange(hsv, lowerRed, upperRed)
 
         # Generate green color mask
-        lowerGreen = np.array([45, 100, 50])
-        upperGreen = np.array([75, 255, 255])
+        lowerGreen = np.array([45, 70, 80])
+        upperGreen = np.array([70, 255, 255])
         mask3 = cv.inRange(hsv, lowerGreen, upperGreen)
 
         # Generate yellow color mask
-        lowerYellow = np.array([20, 100, 100])
+        lowerYellow = np.array([25, 70, 120])
         upperYellow = np.array([30, 255, 255])
         mask4 = cv.inRange(hsv, lowerYellow, upperYellow)
 
