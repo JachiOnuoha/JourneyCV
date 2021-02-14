@@ -9,8 +9,8 @@ class EdgeFinder:
     # Get the contours in an image
     def detectContours(self, img):
         # Convert the image to from HSV to grayscale
-        img = cv.cvtColor(img, cv.COLOR_HSV2BGR)
-        img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+        # img = cv.cvtColor(img, cv.COLOR_HSV2BGR)
+        # img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
         # Threshold the gaussian blurred masked image using otsu binarization
         ret, thresh_img = cv.threshold(
