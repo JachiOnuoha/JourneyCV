@@ -26,7 +26,7 @@ class HSVFilter:
         mask3 = cv.inRange(hsv, lowerGreen, upperGreen)
 
         # Generate yellow color mask
-        lowerYellow = np.array([25, 70, 120])
+        lowerYellow = np.array([15, 70, 120])
         upperYellow = np.array([30, 255, 255])
         mask4 = cv.inRange(hsv, lowerYellow, upperYellow)
 
