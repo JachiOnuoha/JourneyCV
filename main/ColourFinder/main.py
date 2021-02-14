@@ -22,7 +22,7 @@ while True:
     # Get resulting mask and coordinates for desired color
     blue_mask, red_mask, green_mask, yellow_mask = myFilter.isolate(hsv=hsv, frame=frame)
 
-    # Get the contours in the image
+    # Get the contours for different colors in the image
     blueContour = myFinder.detectContours(blue_mask)
     redContour = myFinder.detectContours(red_mask)
     greenContour = myFinder.detectContours(green_mask)
@@ -32,6 +32,8 @@ while True:
     processFrame = frame
     EdgeFinder.colorAnnotation(blueContour, processFrame, "blue")
     EdgeFinder.colorAnnotation(redContour, processFrame, "red")
+    EdgeFinder.colorAnnotation(greenContour, processFrame, "green")
+    EdgeFinder.colorAnnotation(yellowContour, processFrame, "yellow")
 
     cv.imshow("Result", frame)
 
