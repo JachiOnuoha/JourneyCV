@@ -23,28 +23,17 @@ while True:
     blue_mask, red_mask, green_mask, yellow_mask = myFilter.isolate(hsv=hsv, frame=frame)
 
     # Get the contours in the image
-    thresh, contourArr = myFinder.detectContours(blue_mask)
+    blueContour = myFinder.detectContours(blue_mask)
+    redContour = myFinder.detectContours(red_mask)
+    greenContour = myFinder.detectContours(green_mask)
+    yellowContour = myFinder.detectContours(yellow_mask)
 
-    # Get contour Areas
-    for cont in contourArr:
-        area = cv.contourArea(cont)
-
-        # Outline the contours
-        if area > 1000:
-            frame = cv.drawContours(frame, [cont], -1, (0, 255, 0), 2)
-
-            # Find the center of mass of the shape for annotation
-            M = cv.moments(cont)
-            cx = int(M["m10"]/M["m00"])
-            cy = int(M["m01"]/M["m00"])
-
-            # Draw a white dot and label the color of the object
-            cv.circle(frame, (cx, cy), 3, (255, 255, 255), -1)
-            cv.putText(frame, "red", (cx-20, cy-20),
-                       cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+    # Label the colors
+    processFrame = frame
+    EdgeFinder.colorAnnotation(blueContour, processFrame, "blue")
+    EdgeFinder.colorAnnotation(redContour, processFrame, "red")
 
     cv.imshow("Result", frame)
-    cv.imshow("Threshold", thresh)
 
     if cv.waitKey(1) & 0xFF == ord('q'):
         vidCap.release()
