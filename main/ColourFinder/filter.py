@@ -11,7 +11,7 @@ class HSVFilter:
     def isolate(self, hsv, frame):
 
         # Generate blue color mask
-        lowerBlue = np.array([100, 80, 0])
+        lowerBlue = np.array([100, 80, 0])  # make v 255
         upperBlue = np.array([140, 255, 255])
         mask1 = cv.inRange(hsv, lowerBlue, upperBlue)
 
@@ -21,7 +21,7 @@ class HSVFilter:
         mask2 = cv.inRange(hsv, lowerRed, upperRed)
 
         # Generate green color mask
-        lowerGreen = np.array([45, 70, 80])
+        lowerGreen = np.array([65, 60, 60])
         upperGreen = np.array([70, 255, 255])
         mask3 = cv.inRange(hsv, lowerGreen, upperGreen)
 
